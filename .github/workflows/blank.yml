@@ -9,7 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: appleboy/ssh-action 
+      - name: deploy on ec2
+        uses: appleboy/ssh-action 
         with:
           host: ${{ secrets.EC2_IP}}
           username: ${{secrets.EC2_UN}}
@@ -34,7 +35,7 @@ jobs:
                 echo "docker is already installed"
             fi
 
-            
+
             cd /home/ubuntu
             git clone https://github.com/Giriprakam1429/Docker-Deployement-repo.git app || true
             cd app
