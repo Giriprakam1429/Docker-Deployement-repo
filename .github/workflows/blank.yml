@@ -15,7 +15,7 @@ jobs:
           host: ${{ secrets.EC2_IP}}
           username: ${{secrets.EC2_UN}}
           key: ${{secrets.EC2_CR}}
-          scripts: |
+          script: |
             touch index.html
             cp /var/log/dnf.log /home/ec2-user/work.log
 
