@@ -20,16 +20,16 @@ jobs:
             if ! command -v git &> /dev/null
             then
                 echo "git could not be found, installing git"
-                sudo apt-get update
-                sudo apt-get install git -y
+                sudo yum update
+                sudo yum install git -y
             else
                 echo "git is already installed"
             fi
             if ! command -v docker &> /dev/null
             then
                 echo "docker could not be found, installing docker"
-                sudo apt-get update
-                sudo apt-get install docker.io -y
+                sudo yum update
+                sudo yum install docker.io -y
             else
                 echo "docker is already installed"
             fi
