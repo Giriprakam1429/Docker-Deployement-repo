@@ -16,8 +16,25 @@ jobs:
           username: ${{secrets.EC2_UN}}
           key: ${{secrets.EC2_CR}}
           script: |
-            touch index.html
-            cp /var/log/dnf.log /home/ec2-user/work.log
-
-
-
+            echo "verify the git and docker"
+            if ! command -v git &> /dev/null
+            then
+                echo "git could not be found, installing git"
+                sudo apt-get update
+                sudo apt-get install git -y
+            else
+                echo "git is already installed"
+            fi
+            if ! command -v docker &> /dev/null
+            then
+                echo "docker could not be found, installing docker"
+                sudo apt-get update
+                sudo apt-get install docker.io -y
+            else
+                echo "docker is already installed"
+            fi
+            cd /home/ubuntu
+            git clone https://github.com/Giriprakam1429/Docker-Deployement-repo.git app || true
+            cd app
+            docker build -t myapp .
+            docker run --name myapp-container -d -p 80:80 myapp
