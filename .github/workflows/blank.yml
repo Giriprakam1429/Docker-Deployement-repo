@@ -33,8 +33,10 @@ jobs:
             else
                 echo "docker is already installed"
             fi
+            sudo systemctl start docker
+            sudo systemctl enable docker
             cd /home/ubuntu
             git clone https://github.com/Giriprakam1429/Docker-Deployement-repo.git app || true
             cd app
-            docker build -t myapp .
-            docker run --name myapp-container -d -p 80:80 myapp
+            sudo docker build -t myapp .
+            sudo docker run --name myapp-container -d -p 80:80 myapp
